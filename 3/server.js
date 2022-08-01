@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const contenedor = require("./contenedor")
-const producto = new contenedor("./productos.txt")
+
 
 const PORT = 8080;
 
@@ -31,7 +31,7 @@ app.get("/fyh", (req, res) => {
 
 app.get("/productos", async (req, res) => {
     try {
-
+        const producto = new contenedor("./productos.txt")
         const prod = await producto.getAll()
         res.send(prod)
     } catch (error) {
@@ -39,12 +39,14 @@ app.get("/productos", async (req, res) => {
     }
 })
 
-app.get("/productoRandom", async (req, res) => {
-
+app.get("/productorandom", async (req, res) => {
     // no pude resolver esto. Puedo loguear en la consola el producto pero no lo pude hacer aparecer en pantalla me tira undefined :/
     try {
-        let prod = await producto.getById(Math.floor(Math.random() * 3 + 1))
-        prod.then()
+        //
+        const producto = new contenedor("./productos.txt")
+        const prod = await producto.getById(Math.floor(Math.random() * 3 + 1))
+        console.log(prod);
+        res.send(prod)
 
     } catch (error) {
         res.send(error)

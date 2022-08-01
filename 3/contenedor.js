@@ -55,10 +55,7 @@ class Contenedor {
         await fs.promises.writeFile(this.ruta, JSON.stringify([], null, 2))
     }
 
-    async getRandom() {
-        let random = await this.getById(2)
-        console.log(random);
-    }
+
 }
 
 module.exports = Contenedor
