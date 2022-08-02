@@ -40,13 +40,13 @@ app.get("/productos", async (req, res) => {
 })
 
 app.get("/productorandom", async (req, res) => {
-    // no pude resolver esto. Puedo loguear en la consola el producto pero no lo pude hacer aparecer en pantalla me tira undefined :/
+
     try {
         //
         const producto = new contenedor("./productos.txt")
-        const prod = await producto.getById(Math.floor(Math.random() * 3 + 1))
-        console.log(prod);
-        res.send(prod)
+        const prod = await producto.getAll()
+        const random = Math.floor(Math.random() * 3)
+        res.send(prod[random])
 
     } catch (error) {
         res.send(error)
