@@ -42,7 +42,6 @@ app.get("/productos", async (req, res) => {
 app.get("/productorandom", async (req, res) => {
 
     try {
-        //
         const producto = new contenedor("./productos.txt")
         const prod = await producto.getAll()
         const random = Math.floor(Math.random() * 3)
