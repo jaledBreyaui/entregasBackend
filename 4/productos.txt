@@ -1,26 +1,20 @@
 [
   {
-    "nombre": "prod 1",
-    "precio": "150",
-    "tmb": "./bbbbb",
+    "nombre": "detergente aaaa ",
+    "precio": 182,
+    "tmb": "./imgs/photo",
     "id": 1
   },
   {
-    "nombre": "detergente cif ",
+    "nombre": "detergente aaaa ",
     "precio": 182,
     "tmb": "./imgs/photo",
     "id": 2
-  },
-  {
-    "nombre": "detergente www ",
+  }
+]  {
+    "nombre": "detergente aaaa ",
     "precio": 182,
     "tmb": "./imgs/photo",
     "id": 3
-  },
-  {
-    "nombre": "detergente teta ",
-    "precio": 182,
-    "tmb": "./imgs/photo",
-    "id": 4
   }
 ]

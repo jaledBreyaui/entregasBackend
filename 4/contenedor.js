@@ -70,9 +70,10 @@ class Contenedor {
             dataArchParse.filter(data => {
                 if (data.id !== id) {
                     newData.push(data)
-                    console.log("newData:", data);
+                    newData.map((prod, i) => {
+                        prod.id = i + 1;
+                    })
                     fs.promises.writeFile(this.ruta, JSON.stringify(newData, null, 2))
-
                 }
             });
         } catch (error) {

@@ -51,21 +51,31 @@ routerProductos.put("/:id", async (req, res) => {
 })
 
 routerProductos.post('/', async (req, res) => {
-    const producto = new Contenedor("./productos.txt")
-    const { nombre, precio, tmb } = req.body;
-    let obj = {
-        "nombre": nombre,
-        "precio": precio,
-        "tmb": tmb,
+    try {
+        const producto = new Contenedor("./productos.txt")
+        const { nombre, precio, tmb } = req.body;
+        let obj = {
+            "nombre": nombre,
+            "precio": precio,
+            "tmb": tmb,
+        }
+        return await producto.save(obj)
+
+    } catch (error) {
+        res.error(error)
     }
-    return await producto.save(obj)
 })
 
 
 routerProductos.delete('/:id', async (req, res) => {
-    const { id } = req.params;
-    const producto = new Contenedor("./productos.txt");
-    return await producto.deleteById(+id)
+    try {
+
+        const { id } = req.params;
+        const producto = new Contenedor("./productos.txt");
+        return await producto.deleteById(+id)
+    } catch (error) {
+        res.error(error)
+    }
 });
 
 app.use('/api/productos', routerProductos)
