@@ -8,6 +8,7 @@ const Contenedor = require('./contenedor')
 
 app.use(express.static(__dirname + 'public'));
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
 
 
 routerProductos.get("/", async (req, res) => {
@@ -15,7 +16,7 @@ routerProductos.get("/", async (req, res) => {
         const producto = new Contenedor("./productos.txt")
         const prod = await producto.getAll()
         console.log(prod);
-        res.send(prod)
+        res.json(prod)
     } catch (error) {
         res.send(error)
     }
@@ -26,47 +27,50 @@ routerProductos.get("/:id", async (req, res) => {
         const { id } = req.params
         const producto = new Contenedor("./productos.txt")
         const prod = await producto.getById(+id)
-        res.json(prod)
+        res.send(prod)
     } catch (error) {
         res.send(error)
     }
 })
 
-routerProductos.put("/:id", (req, res) => {
+routerProductos.put("/:id", async (req, res) => {
     try {
         const { id } = req.params
-        const obj = {
-            "nombre": "Jaled",
-            "precio": "2",
-            "tmb": "./img/photo.jpg",
-            "id": id
+        const { nombre, precio, tmb } = req.body
+        let obj = {
+            "nombre": nombre,
+            "precio": precio,
+            "tmb": tmb,
         }
-
-        // const producto = new Contenedor("./productos.txt")
-        // const update = await producto.update(obj)
-        console.log(obj);
-
+        obj.id = +id;
+        const producto = new Contenedor("./productos.txt")
+        return await producto.update(obj)
     } catch (error) {
         res.send(error)
     }
 })
 
+routerProductos.post('/', async (req, res) => {
+    const producto = new Contenedor("./productos.txt")
+    const { nombre, precio, tmb } = req.body;
+    let obj = {
+        "nombre": nombre,
+        "precio": precio,
+        "tmb": tmb,
+    }
+    return await producto.save(obj)
+})
 
 
-
-
-// routerProductos.put('/:id', (req, res) => {
-//     const { nombre, precio, tmb } = req.body;
-
-// })
-
-// routerProductos.post('/')
-
-
+routerProductos.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    const producto = new Contenedor("./productos.txt");
+    return await producto.deleteById(+id)
+});
 
 app.use('/api/productos', routerProductos)
 
-app.listen(4000, () => {
+app.listen(8080, () => {
     console.log('server on port 4000');
 })
 

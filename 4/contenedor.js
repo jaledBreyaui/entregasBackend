@@ -13,15 +13,14 @@ class Contenedor {
 
     async save(obj) {
         try {
-            let dataArch = await fs.promises.readFile(this.ruta, "utf8");
-            let dataArchParse = JSON.parse(dataArch)
-            // console.log(dataArch);
+            let dataArchParse = await this.#readFileFunc(this.ruta)
+            console.log(dataArchParse);
             if (dataArchParse.length) {
                 await fs.promises.writeFile(this.ruta, JSON.stringify([...dataArchParse, { ...obj, id: dataArchParse.length + 1 }], null, 2))
             } else {
                 await fs.promises.writeFile(this.ruta, JSON.stringify([{ ...obj, id: 1 }], null, 2))
             }
-            // console.log(dataArchParse);
+
 
         } catch (error) {
             console.log(error);
@@ -41,16 +40,17 @@ class Contenedor {
 
     async update(obj) {
         try {
-
-            let dataArch = await this.#readFileFunc(this.ruta);
-            const viejo = dataArchParse.find(prod => prod.id !== id)
-            console.log(viejo);
-            // if (objIndex !== -1) {
-            //     dataArch[objIndex] = obj
-            //     await fs.promises.writeFile(this.ruta, JSON.stringify(dataArch, null, 2))
-            // } else {
-            //     return { error: "no existe el producto" }
-            // }
+            let dataArchParse = await this.#readFileFunc(this.ruta);
+            const viejo = dataArchParse.find(prod => prod.id === obj.id)
+            if (viejo) {
+                dataArchParse[(obj.id - 1)] = obj
+                console.log(dataArchParse);
+                await fs.promises.writeFile(this.ruta, JSON.stringify(dataArchParse, null, 2))                // console.log(dataArchParse.length);
+            }
+            else if (viejo === undefined) {
+                // console.log(dataArchParse.length);
+                return { error: "no existe el producto" }
+            }
 
         } catch (error) {
             return error
@@ -64,15 +64,20 @@ class Contenedor {
     }
 
     async deleteById(id) {
-        let dataArch = await fs.promises.readFile(this.ruta, "utf8");
-        let dataArchParse = JSON.parse(dataArch)
-        let newData = []
-        dataArchParse.filter(data => {
-            if (data.id !== id) {
-                newData.push(data)
-                fs.promises.writeFile(this.ruta, JSON.stringify(newData, null, 2))
-            }
-        });
+        try {
+            let dataArchParse = await this.#readFileFunc(this.ruta)
+            let newData = []
+            dataArchParse.filter(data => {
+                if (data.id !== id) {
+                    newData.push(data)
+                    console.log("newData:", data);
+                    fs.promises.writeFile(this.ruta, JSON.stringify(newData, null, 2))
+
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     async deleteAll() {
