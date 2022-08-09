@@ -44,7 +44,7 @@ class Contenedor {
             const viejo = dataArchParse.find(prod => prod.id === obj.id)
             if (viejo) {
                 dataArchParse[(obj.id - 1)] = obj
-                console.log(dataArchParse);
+
                 await fs.promises.writeFile(this.ruta, JSON.stringify(dataArchParse, null, 2))                // console.log(dataArchParse.length);
             }
             else if (viejo === undefined) {
@@ -73,6 +73,7 @@ class Contenedor {
                     newData.map((prod, i) => {
                         prod.id = i + 1;
                     })
+
                     fs.promises.writeFile(this.ruta, JSON.stringify(newData, null, 2))
                 }
             });

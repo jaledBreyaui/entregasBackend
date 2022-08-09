@@ -10,11 +10,23 @@
     "precio": 182,
     "tmb": "./imgs/photo",
     "id": 2
-  }
-]  {
+  },
+  {
     "nombre": "detergente aaaa ",
     "precio": 182,
     "tmb": "./imgs/photo",
     "id": 3
+  },
+  {
+    "nombre": "hjj",
+    "precio": "4",
+    "tbn": "g",
+    "id": 4
+  },
+  {
+    "nombre": "produxcto",
+    "precio": "123",
+    "tbn": "foto",
+    "id": 5
   }
 ]

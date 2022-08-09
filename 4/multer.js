@@ -36,11 +36,11 @@ routerProductos.get("/:id", async (req, res) => {
 routerProductos.put("/:id", async (req, res) => {
     try {
         const { id } = req.params
-        const { nombre, precio, tmb } = req.body
+        const { nombre, precio, tbn } = req.body
         let obj = {
             "nombre": nombre,
             "precio": precio,
-            "tmb": tmb,
+            "tbn": tbn,
         }
         obj.id = +id;
         const producto = new Contenedor("./productos.txt")
@@ -53,12 +53,16 @@ routerProductos.put("/:id", async (req, res) => {
 routerProductos.post('/', async (req, res) => {
     try {
         const producto = new Contenedor("./productos.txt")
-        const { nombre, precio, tmb } = req.body;
+        const { nombre, precio, tbn } = req.body
         let obj = {
             "nombre": nombre,
             "precio": precio,
-            "tmb": tmb,
+            "tbn": tbn,
         }
+        res.json({
+            msg: "su producto ha sido guardado!",
+            obj
+        })
         return await producto.save(obj)
 
     } catch (error) {
@@ -81,7 +85,11 @@ routerProductos.delete('/:id', async (req, res) => {
 app.use('/api/productos', routerProductos)
 
 app.listen(8080, () => {
-    console.log('server on port 4000');
+    console.log('server on port 8080');
+})
+
+app.get('/index', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html')
 })
 
 // const storage = multer.diskStorage({
@@ -118,9 +126,6 @@ app.listen(8080, () => {
 //     res.send(files)
 // })
 
-// app.get('/index', (req, res) => {
-//     res.sendFile(__dirname + '/public/index.html')
-// })
 
 // app.get('/', (req, res) => {
 //     res.send('página principal')
