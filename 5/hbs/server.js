@@ -6,7 +6,7 @@ const app = express();
 const port = 4000 || process.env.PORT;
 
 app.use(express.json());
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }))
 
 app.engine('hbs',
