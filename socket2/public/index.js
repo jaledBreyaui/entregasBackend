@@ -28,9 +28,9 @@ const renderChat = (mensajes) => {
 
 
 enviar.addEventListener('click', () => {
-    const prod = document.querySelector('#producto').value
+    const nombre = document.querySelector('#producto').value
     const precio = document.querySelector('#precio').value
-    const producto = { prod, precio }
+    const producto = { nombre, precio }
     socket.emit('nuevo-producto', producto)
     return false
 })
