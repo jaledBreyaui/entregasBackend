@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "Aspiradora Whirpool",
+    "descripcion": "Una aspiradora",
+    "precio": 300,
+    "foto": "foto",
+    "stock": 10,
+    "id": 1,
+    "timeStamp": 1661898127918,
+    "codigo": "0001"
+  },
+  {
+    "nombre": "Lavavajillas whirpool",
+    "descripcion": "Un lavavajilla",
+    "precio": 2500,
+    "foto": "foto lavavajillas",
+    "stock": 10,
+    "id": 2,
+    "timeStamp": 1661902608662,
+    "codigo": "0011"
+  },
+  {
+    "nombre": "Matias Coccaro",
+    "descripcion": "Un crack",
+    "precio": 1000000000000000000,
+    "foto": "un zorro",
+    "stock": 1,
+    "id": 3,
+    "timeStamp": 1661912307257,
+    "codigo": "0021"
+  }
+]

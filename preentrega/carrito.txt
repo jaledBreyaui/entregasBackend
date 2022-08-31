@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "timeStamp": 1661913856463,
+    "productos": [
+      {
+        "nombre": "Aspiradora Whirpool",
+        "descripcion": "Una aspiradora",
+        "precio": 300,
+        "foto": "foto",
+        "stock": 10,
+        "id": 1,
+        "timeStamp": 1661898127918,
+        "codigo": "0001"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "timeStamp": 1661915206495,
+    "productos": []
+  },
+  {
+    "id": 3,
+    "timeStamp": 1661915207578,
+    "productos": []
+  },
+  {
+    "id": 4,
+    "timeStamp": 1661981734762,
+    "productos": [
+      {
+        "nombre": "Aspiradora Whirpool",
+        "descripcion": "Una aspiradora",
+        "precio": 300,
+        "foto": "foto",
+        "stock": 10,
+        "id": 1,
+        "timeStamp": 1661898127918,
+        "codigo": "0001"
+      }
+    ]
+  }
+]
