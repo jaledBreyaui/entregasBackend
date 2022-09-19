@@ -1,0 +1,28 @@
+
+
+
+db.mensajes.insertMany([{usuario:"usuario1", msj:"Hola!"}, {usuario:"usuario2", msj:"Saludo"}, {usuario:"usuario3",  msj:"MENSAJE"},{usuario:"usuario4", msj:"mensaje usuario 4"},{usuario:"usuario5", msj:"mensaje usuario5"}, {usuario:"usuario6", msj:"Saludo de usuario6!"}, {usuario:"usuario7", msj:"Usuario7 saludando"}, {usuario:"User8", msj:"Hola!"}, {usuario:"Usuario9", msj:"mensaje!"},{usuario:"usuario10", msj:"ultimo user"}])
+db.productos.insertMany([{producto:"gorra", precio:100}, {producto:"Remera", precio:175}, {producto:"Jean", precio:250}, {producto:"Pulsera", precio:55}, {producto:"Campera", precio:250}, {producto:"Zapatillas", precio:350},{producto:"buzo", precio:220}, {producto:"Calzon", precio:125}, {producto:"Bermuda", precio:225}, {producto:"Collar", precio:40}])
+db.productos.find()
+db.mensajes.find()
+db.productos.count()
+db.mensajes.count()
+db.mensajes.insert({usuario:"usuario11", mensaje:"agregado último"})
+db.productos.insert({producto:"Reloj", precio:500})
+// Puse precios muy bajos mala mía//
+
+db.productos.find({precio:{$lt:100}}) //menor a 100
+
+db.productos.find({precio:{$gt:100, $lt:300}}) //mayor a 100 menor a 300
+
+db.productos.find({precio:{$gt:300}}) //Mayor a 300
+
+db.productos.find({},{"producto":1}).sort({precio:1}).limit(1).skip(2))// nombre del 3er producto mas barato
+
+db.productos.updateMany({},{$set:{"stock":100}}) //todos stock = 100
+
+ db.productos.updateMany({precio:{$gt:400}},{$set:{"stock":0}}) //Stock = 0 para precios mayores a 400
+
+//Creacion de usuario
+use admin
+db.createUser({user:"pepe", pwd:"asd456",roles:[{role:"read", db:"ecommerce"}]})
