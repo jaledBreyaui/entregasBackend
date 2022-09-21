@@ -35,6 +35,14 @@ class CartDaoMongo extends ContenedorMongo {
             console.log(error);
         }
     }
+
+    async deleteById(id) {
+        try {
+            await Cart.deleteOne({ id: +id })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = CartDaoMongo

@@ -69,7 +69,7 @@ const deleteProduct = async (req, res = response) => {
 const deleteCart = async (req, res = response) => {
     try {
         const { id } = req.params
-        await cartDaoFs.deleteById(+id)
+        await cartDaoMongo.deleteById(+id)
         res.send({
             msj: `Carrito ${id} eliminado`
         })

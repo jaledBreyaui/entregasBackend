@@ -16,13 +16,7 @@ class ContenedorMongo {
         }
     }
 
-    async deleteById(id) {
-        try {
-            await Prod.deleteOne({ _id: id })
-        } catch (error) {
-            console.log(error);
-        }
-    }
+
 }
 
 module.exports = { ContenedorMongo }
