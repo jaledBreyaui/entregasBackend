@@ -2,6 +2,42 @@
   {
     "id": 1,
     "timeStamp": 1663597269790,
+    "productos": [
+      {
+        "nombre": "prod 1",
+        "precio": "1200",
+        "id": 1
+      },
+      {
+        "nombre": "producto  3",
+        "precio": "3000",
+        "id": 2
+      },
+      {
+        "nombre": "producto  3",
+        "precio": "1000",
+        "id": 3
+      },
+      {
+        "nombre": "producto  3",
+        "precio": "1000",
+        "id": 3
+      },
+      {
+        "nombre": "prod 1",
+        "precio": "1200",
+        "id": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "timeStamp": 1663608348623,
+    "productos": []
+  },
+  {
+    "id": 3,
+    "timeStamp": 1663718020875,
     "productos": []
   }
 ]

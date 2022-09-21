@@ -34,8 +34,8 @@ class ProdDaoFs extends ContenedorArchivo {
         try {
             let dataArch = await fs.promises.readFile(this.ruta, "utf-8")
             let dataArchParse = JSON.parse(dataArch)
-            if (dataArchParse[obj.id - 1]) {
-                dataArchParse[obj.id - 1] = obj
+            if (dataArchParse[+obj.id - 1]) {
+                dataArchParse[+obj.id - 1] = obj
                 await fs.promises.writeFile(this.ruta, JSON.stringify(dataArchParse, null, 2))
             } else if (art == undefined) {
                 return { error: "no existe el producto" }

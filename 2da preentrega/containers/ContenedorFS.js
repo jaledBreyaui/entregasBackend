@@ -16,9 +16,9 @@ class ContenedorArchivo {
         try {
             let dataArchParse = await this.#readFileFunc(this.ruta)
             let producto = dataArchParse.find(prod => prod.id === +id)
-            console.log(producto);
             if (producto) {
                 return producto
+
             } else {
                 return dataArchParse
             }

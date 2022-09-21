@@ -1,9 +1,10 @@
 const { response } = require('express')
 const CartDaoFs = require('../DAOS/Cart/CartDaoFs.js')
 const cartDaoFs = new CartDaoFs();
-
 const ProdDaoFs = require('../DAOS/Products/ProdDaoFs.js')
 const prodDaoFs = new ProdDaoFs()
+const CartDaoMongo = require('../DAOS/Cart/CartDaoMongo')
+const cartDaoMongo = new CartDaoMongo()
 
 const newCart = async (req, res = response) => {
     try {
@@ -26,11 +27,23 @@ const getCart = async (req, res = resposne) => {
     }
 }
 
+const getProducts = async (req, res = response) => {
+    try {
+        const { id } = req.params
+        const cart = await cartDaoFs.getById(+id)
+        res.send({
+            cart: cart.productos
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const addToCart = async (req, res = response) => {
     try {
         const { id, id_prod } = req.params
-        const prod = await prodDaoFs.getById(+id_prod)
-        const push = await cartDaoFs.pushProduct(prod, +id)
+        const prod = await prodDaoFs.getById(id_prod)
+        const push = await cartDaoMongo.pushProduct(prod, +id)
         res.send({
             msj: "producto agregado",
             prod
@@ -44,7 +57,7 @@ const deleteProduct = async (req, res = response) => {
     try {
         const { id, id_prod } = req.params
         const prod = await prodDaoFs.getById(+id_prod)
-        const deleted = await cartDaoFs.deleteProd(+id, +id_prod)
+        const deleted = await cartDaoMongo.deleteProd(+id, +id_prod)
         res.send({
             deleted
         })
@@ -65,4 +78,4 @@ const deleteCart = async (req, res = response) => {
     }
 }
 
-module.exports = { newCart, addToCart, deleteCart, getCart, deleteProduct }
+module.exports = { newCart, addToCart, deleteCart, getCart, deleteProduct, getProducts }
