@@ -8,6 +8,9 @@ const prodDaoFs = new ProdDaoFs()
 const ProdDaoMongo = require('../DAOS/Products/ProdDaoMongo')
 const prodMongo = new ProdDaoMongo();
 
+const ProdDaoFb = require('../DAOS/Products/ProdDarFb')
+const prodfb = new ProdDaoFb()
+
 // const mongo = true
 // const fs = true
 
@@ -24,20 +27,18 @@ const prodMongo = new ProdDaoMongo();
 
 const getProductsById = async (req, res = response) => {
     const { id } = req.params
-    console.log(id);
-    const prods = await prodMongo.getById(id)
-    console.log(prods);
-    res.send({ prods })
+    const prods = await prodfb.getById(id)
+    res.send(prods)
 }
 
 const getAll = async (req, res = response) => {
-    const prods = await prodMongo.getAll()
+    const prods = await prodfb.getAll()
     res.send({ prods })
 }
 
 const postProduct = async (req, res = response) => {
     const { nombre, precio } = req.body
-    const post = await prodMongo.save({ nombre, precio })
+    const post = await prodfb.save({ nombre, precio })
     res.send({
         msj: "producto agregado",
         // prods: await prodDaoFs.getAll()
@@ -46,7 +47,7 @@ const postProduct = async (req, res = response) => {
 
 const deleteProduct = async (req, res = response) => {
     const { id } = req.params
-    const deleteado = await prodMongo.deleteById(id)
+    const deleteado = await prodfb.deleteById(id)
     res.send({
         msj: `prod con id: ${id} deleteado`,
     })
@@ -55,10 +56,10 @@ const deleteProduct = async (req, res = response) => {
 const updateProduct = async (req, res = response) => {
     const { id } = req.params
     const obj = { ...req.body, id: id }
-    await prodMongo.updateById(obj)
+    await prodfb.updateById(obj)
     res.send({
         msj: "Producto actualizado!",
-        prods: await prodMongo.getAll()
+        prods: await prodfb.getAll()
     })
 
 }

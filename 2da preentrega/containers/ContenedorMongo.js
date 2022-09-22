@@ -9,7 +9,7 @@ class ContenedorMongo {
 
     async getById(id) {
         try {
-            const productos = await Prod.find({ _id: id })
+            const productos = await Prod.find({ id: id })
             return productos
         } catch (error) {
             console.log(error);
