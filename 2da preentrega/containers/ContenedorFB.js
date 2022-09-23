@@ -23,6 +23,7 @@ class ContenedorFb {
             const queryRead = await query.get()
             const prods = queryRead.docs.filter(doc => (doc.id === id))
             const producto = prods.map(doc => doc.data())
+            console.log("es aca");
             return producto
         } catch (error) {
             console.log(error);
