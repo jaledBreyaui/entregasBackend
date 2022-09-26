@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const connectMongo = async () => {
     try {
         // const url = "mongodb://localhost:27017/colegio"
-        const url = "mongodb+srv://jaled725:Merolla22@cluster0.30tm7us.mongodb.net/Ecommerce"
+        const url = ""
         await mongoose.connect(url, {
             useNewUrlParser: true,
             useUnifiedTopology: true
