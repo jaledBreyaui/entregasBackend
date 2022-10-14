@@ -5,7 +5,8 @@ const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true }
 const routerSession = express.Router()
 const app = express()
 require('dotenv').config()
-const authMiddleware = require('./middleware/auth')
+const { ContenedorMongo } = require('./connection/container')
+const mongo = new ContenedorMongo()
 
 
 app.use(express.static(__dirname + '/public'))
@@ -24,8 +25,6 @@ app.use(session({
         mongoOptions: advancedOptions
     })
 }))
-
-
 
 routerSession.get('/', (req, res) => {
     res.status(200).sendFile(__dirname + '/public/index.html')
@@ -49,9 +48,10 @@ routerSession.post('/login', async (req, res) => {
     }
 })
 
-routerSession.get('/logueado', (req, res) => {
+routerSession.get('/logueado', async (req, res) => {
+    const mensajes = await mongo.getMsjs()
     const user = req.session.usuario
-    res.render('logueado', { user })
+    res.render('logueado', { user, mensajes })
 })
 
 
@@ -62,7 +62,8 @@ routerSession.use('/logout', async (req, res) => {
                 return res.status(500).send(`<h1>No se pudo cerrar sesion</h1>`)
             }
         })
-        return res.status(200).send(`<h1>Hasta pronto!</h1>`)
+
+        return res.status(200).redirect('/session')
     } catch (error) {
         res.status(500).json({
             succes: false,

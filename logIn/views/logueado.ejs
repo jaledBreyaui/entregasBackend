@@ -17,6 +17,20 @@
             <input type="submit" value="Cerrar sesión"></input>
         </form>
     </div>
+    <div class="mensajes">
+        <ul>
+            <% mensajes.map(data=> { %>
+                <li class="row  border-bottom align-text-bottom">
+                    <p class="m-0 p-1">
+                        <strong>
+                            <%= data.nombre.nombre %>
+                        </strong> : "<%=data.msj %>"
+                    </p>
+                </li>
+                <%})%>
+
+        </ul>
+    </div>
 </body>
 
 </html>
