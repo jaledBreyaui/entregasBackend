@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Welcome</title>
+</head>
+
+<body>
+    <div class="bg-primary d-flex flex-column text-center">
+        <h1>Home</h1>
+        <h2>Bienvenido, <%- req.user[0].nombre %>
+        </h2>
+        <p><a href="/logout" class="text-light">Cerrar Sesión</a></p>
+
+    </div>
+    <div class="d-flex flex-row justify-content-evenly align-items-center p-5">
+        <div class="post-mensaje col-2 bg-primary  rounded">
+            <form action="/postmsj" method="post" class="d-flex flex-column align-items-center p-4">
+                <input placeholder="Tu mensaje" name="msj" class="m-2">
+                <input type="submit" value="enviar" class="w-50 m-2">
+            </form>
+        </div>
+        <div class="mensajes col-6">
+            <ul>
+                <% mensajes.map(data=> { %>
+                    <li class="row  border-bottom align-text-bottom">
+                        <p class="m-0 p-1">
+                            <strong>
+                                <%= data.nombre.nombre %>
+                            </strong> : "<%=data.msj %>"
+                        </p>
+                    </li>
+                    <%})%>
+
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
