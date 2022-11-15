@@ -30,8 +30,8 @@ app.use(session({
         mongoOptions: advancedOptions
     })
 }))
-app.use(passport.session())
 
+app.use(passport.session())
 app.use(passport.initialize())
 
 
@@ -55,6 +55,7 @@ const upload = multer({ storage })
 /////UTILS//////
 const isValidPassword = (user, password) => {
     return bcrypt.compareSync(password, user.password)
+
 }
 
 
@@ -152,7 +153,7 @@ app.post('/signup', passport.authenticate('signup', {
 /////ADENTRO////
 
 app.get('/signed', checkAuth, (req, res) => {
-    res.render('signed')
+    res.render('signed', { req })
 })
 
 
@@ -186,7 +187,6 @@ app.post('/nuevoproducto', upload.single('archivo'), async (req, res) => {
 app.listen(PORT, (err) => {
     if (err) console.log(err);
     console.log(`server up in port: ${PORT}`);
-
 })
 
 

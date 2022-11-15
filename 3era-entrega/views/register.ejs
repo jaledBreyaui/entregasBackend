@@ -5,34 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/home/home.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Sign up!</title>
 </head>
 
 <body>
-    <div>
-        register
-    </div>
-    <div class="form">
-        <form action="/signup" method="POST">
-            <div>
-                <input placeholder="Nombre " name="nombre">
-                <input placeholder="Apellido " name="apellido">
-                <input placeholder="Email " name="email" type="email">
-                <input placeholder="Contraseña" name="password" type="password">
-            </div>
-            <div>
-                <input placeholder="Dirección" name="direccion">
-                <input placeholder="Fecha de nacimiento " name="fechanacimiento" type="date">
-                <input placeholder="Telefono " name="telefono" type="number">
-                <input placeholder="foto" name="foto"></var>
-            </div>
-            <input type="submit">
-        </form>
-    </div>
-    <div class="bg-secondary d-flex flex-row justify-content-center opacity-75 text-light">
-        <p class="m-1">Ya tenés cuenta ?</p>
-        <p class="m-1"><a href="/" class="link-light">Hacé click acá</a></p>
-    </div>
+    <%- include('./navbar.ejs')%>
+
+        <div class="brand">
+
+        </div>
+        <div class="form">
+            <form action="/signup" method="POST">
+                <div>
+                    <input placeholder="Nombre " name="nombre">
+                    <input placeholder="Apellido " name="apellido">
+                    <input placeholder="Email " name="email" type="email">
+                    <input placeholder="Contraseña" name="password" type="password">
+                </div>
+                <div>
+                    <input placeholder="Dirección" name="direccion">
+                    <input placeholder="Fecha de nacimiento " name="fechanacimiento" type="date">
+                    <input placeholder="Telefono " name="telefono" type="number">
+                    <input placeholder="foto" name="foto"></var>
+                </div>
+                <input type="submit">
+            </form>
+        </div>
+        <%- include("./footer.ejs")%>
 </body>
 
 </html>

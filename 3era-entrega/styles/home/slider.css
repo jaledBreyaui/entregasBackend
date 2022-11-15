@@ -1,10 +1,18 @@
+.sliderWrapper {
+    margin: 20px auto;
+    width: 70%;
+
+    padding: 0px;
+    margin-top: 0;
+}
+
 .slider {
     max-width: 100rem;
     height: 40rem;
     margin: 20px auto;
     position: relative;
     overflow: hidden;
-    margin-top: 50px;
+    margin-top: 0;
     /* box-shadow: 0 0.9rem 1.5rem rgba(0, 0, 0, 0.7); */
 }
 
@@ -48,12 +56,4 @@
 .btnright {
     left: 95%;
     transform: translate(50%, -50%);
-}
-
-.sliderWrapper {
-    margin: 20px auto;
-    width: 70%;
-    background-color: orange;
-    padding: 0px;
-    box-shadow: 0 0.9rem 1.5rem rgba(0, 0, 0, 0.7);
 }

@@ -22,3 +22,24 @@
     align-items: center;
     justify-content: center;
 }
+
+form>input {
+    padding: 5px;
+}
+
+.footer {
+    height: 15vh;
+    background-color: orange;
+}
+
+h2>a {
+    text-decoration: none;
+    color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+}
+
+h2>a:hover {
+    text-decoration: none;
+    color: black;
+}
