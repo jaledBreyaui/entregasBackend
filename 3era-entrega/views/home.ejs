@@ -10,70 +10,87 @@
     <link rel="stylesheet" href="../styles/home/home.css" type="text/css">
     <link rel="stylesheet" href="../styles/home/slider.css" type="text/css">
     <link rel="stylesheet" href="../styles/home/products.css" type="text/css">
+    <link rel="stylesheet" href="../styles/home/footer.css" type="text/css">
     <script src="https://kit.fontawesome.com/d719a77ba7.js" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <title>Home</title>
 </head>
 
 <body>
-    <%- include('./navbar.ejs')%>
-        <div class="bg-secondary d-flex flex-row justify-content-center opacity-75 text-light">
-            <p class="m-1">No tenés cuenta todavia?</p>
-            <p class="m-1"><a href="/signup" class="link-light">Hacé click acá</a></p>
+    <div class="nav ">
+        <div class="logo">
+            <h1>
+                <a href="/">Tienda Jaled (?</a>
+            </h1>
         </div>
-        <div class="sliderWrapper">
-            <div class="slider">
-                <div class="slide">
-                    <img src="../public/imgs/cocina.jpg" alt="">
-                </div>
-                <div class="slide">
-                    <img src="../public/imgs/llibros.jpg" alt="">
-                </div>
-                <div class="slide">
-                    <img src="../public/imgs/telefonos.jpg" alt="">
-                </div>
-                <div class="slide">
-                    <img src="../public/imgs/ropa.jpg" alt="">
-                </div>
 
-                <button class="btn btnleft"> </button>
-                <button class="btn btnright"> </button>
+        <div class="register">
+            <a href="/signup">
+                <i class="fa-solid fa-user fa-lg opacity-75 mb-1"></i>
+                <h4>Inicia sesión</h4>
+            </a>
+        </div>
+    </div>
+    <div class="sliderWrapper">
+        <div class="slider">
+            <div class="slide">
+                <img src="../public/imgs/cocina.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="../public/imgs/llibros.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="../public/imgs/telefonos.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="../public/imgs/ropa.jpg" alt="">
+            </div>
+
+            <button class="btn btnleft"> </button>
+            <button class="btn btnright"> </button>
+
+        </div>
+    </div>
+    <div id="productosEncabezado">
+        <p>Más Vendidos</p>
+    </div>
+    <div class="productos">
+        <% productos.map(data=> { %>
+            <div class="card">
+
+                <img src="/uploads/<%=data.imagen %>">
+
+                <div class="card-info">
+                    <p>
+                        <%=data.marca%>
+                    </p>
+
+                    <p>
+                        <%=data.nombre%>
+                    </p>
+                    <p>
+                        $<%=data.precio%>
+                    </p>
+
+                </div>
+                <form class="form-addToCart" action="/addcart" method="POST">
+                    <input value="<%=data._id%>" name="id">
+                    <button class="btn-addToCart" id="">
+                        Agregar 🛒
+                    </button>
+                </form>
 
             </div>
-        </div>
-        <div id="productosEncabezado">
-            <p>Más Vendidos</p>
-        </div>
-        <div class="productos">
-            <% productos.map(data=> { %>
-                <div class="card">
+            <%})%>
+                <button class="btn-prod-der"></button>
+                <button class="btn-prod-izq"></button>
 
-                    <img src="/uploads/<%=data.imagen %>">
+    </div>
+    <%- include("./footer.ejs") %>
 
-                    <div class="card-info">
-                        <p>
-                            <%=data.marca%>
-                        </p>
-
-                        <p>
-                            <%=data.nombre%>
-                        </p>
-                        <p>
-                            $<%=data.precio%>
-                        </p>
-
-                    </div>
-                    <button class="btn-compra">Agregar 🛒</button>
-
-                </div>
-                <%})%>
-                    <button class="btn-prod-der"></button>
-                    <button class="btn-prod-izq"></button>
-
-        </div>
-        <%- include("./footer.ejs") %>
-
-            <script src="../public/js/home.js">
-            </script>
+        <script src="../public/js/home.js">
+        </script>
+        <script src="../public/js/socket.js"></script>
 </body>
 
 </html>

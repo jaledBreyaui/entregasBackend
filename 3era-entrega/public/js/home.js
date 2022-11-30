@@ -1,4 +1,4 @@
-///////SLIDER////////
+///////SLIDER HOME////////
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.btnleft ');
 const btnRight = document.querySelector('.btnright ');
@@ -25,7 +25,7 @@ btnLeft.addEventListener('click', () => {
 })
 
 
-
+/////////Slider prodcutos///////////
 
 const cards = document.querySelectorAll('.card')
 const prodRight = document.querySelector('.btn-prod-der')
@@ -37,11 +37,16 @@ let maxCard = cards.length
 
 const goToCard = (card) => {
     cards.forEach((s, i) => {
-
         console.log(`${110 * (card)}`, "card");
         s.style.transform = `translateX(${110 * (i - card * 1.9)}%)`
-    });
+        if (window.innerWidth < 700) {
+            s.style.transform = `translateX(${100 * (i - card)}%)`
+        }
+        if (window.innerWidth > 700 && window.innerWidth < 1400) {
+            s.style.transform = `translateX(${100 * (i - card)}%)`
+        }
 
+    })
 }
 goToCard(0)
 
@@ -49,14 +54,21 @@ prodLeft.addEventListener('click', () => {
     if (curCard > 0) {
         curCard--;
         goToCard(curCard)
-
     }
 })
 
 prodRight.addEventListener('click', () => {
+    if (window.innerWidth < 700) {
+        if (curCard < cards.length - 1) {
+            curCard++
+            goToCard(curCard)
+        }
+    }
     if (curCard < cards.length - 4) {
         curCard++
         goToCard(curCard)
     }
-
 })
+
+///////// funcion añadir al carrito/////
+

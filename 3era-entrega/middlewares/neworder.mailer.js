@@ -1,27 +1,29 @@
 const nodemailer = require('nodemailer');
-const { errorMonitor } = require('nodemailer/lib/xoauth2');
+require('dotenv').config()
 
-const TEST_MAIL = 'jaledbreyaui41@gmail.com'
+
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     port: 587,
     auth: {
-        user: TEST_MAIL,
+        user: process.env.ADMIN_MAIL,
         pass: 'xoogcrpulqmsrbcw'
     }
 });
 
-const sendMail = (user) => {
+const newOrderMail = (user, productos) => {
 
     const mailOptions = {
         from: 'Servidor de Jaled!',
-        to: user.email,
-        subject: "Bienvenido!",
-        html: `<div> <h1>Bienvenido a tienda Jaled! verfique que sus datos sean correctos</h1>
+        to: process.env.ADMIN_MAIL,
+        subject: "Nueva compra!",
+        html: `<div> <h1>Datos del usuario</h1>
         <h3>${user.nombre} ${user.apellido}</h3>
         <h3>${user.telefono}</h3>
         <h3>${user.direccion}</h3>
+        <h1>Productos</h1>
+        ${productos}
     </div>`,
         attachments: [
             {
@@ -41,4 +43,4 @@ const sendMail = (user) => {
         })()
 }
 
-module.exports = sendMail 
+module.exports = newOrderMail 
