@@ -2,12 +2,12 @@ const { Router } = require('express')
 const routes = Router()
 const checkAuth = require('../middlewares/checkAuth')
 const passport = require('passport')
-const upload = require('../middlewares/multer')
+const { uploadProfile, uploadProd } = require('../middlewares/multer')
 
 
 const { getHome, signed, logOut, register,
     addProducts, postProduct, addToCart, renderCart,
-    newOrder, renderProfile } = require('../controllers/controllers')
+    newOrder, renderProfile, handleProfilePic } = require('../controllers/controllers')
 
 
 routes.get('/', getHome)
@@ -22,7 +22,7 @@ routes.get('/signup', register)
 routes.post('/signup', passport.authenticate('signup', {
     successRedirect: '/',
     failureRedirect: '/signup'
-}))
+}), uploadProfile.single('archivo'), handleProfilePic)
 
 routes.get('/signed', checkAuth, signed)
 
@@ -30,7 +30,7 @@ routes.get('/logout', logOut)
 
 routes.get('/nuevoproducto', addProducts)
 
-routes.post('/nuevoproducto', upload.single('archivo'), postProduct)
+routes.post('/nuevoproducto', uploadProd.single('fotoProducto'), postProduct)
 
 
 routes.post('/addcart', checkAuth, addToCart)

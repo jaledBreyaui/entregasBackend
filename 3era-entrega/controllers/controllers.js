@@ -29,8 +29,9 @@ const addProducts = (req, res) => {
 
 const postProduct = async (req, res) => {
     const { file } = req
+    console.log(file);
     if (file) {
-        const imagen = `${file.filename}`
+        const imagen = `${file.originalname}`
         const { nombre, precio, tags, marca } = req.body
         const obj = { nombre, precio, tags, imagen, marca }
         if (obj) {
@@ -38,6 +39,13 @@ const postProduct = async (req, res) => {
         }
     }
     res.redirect('/nuevoproducto')
+}
+
+
+const handleProfilePic = async (req, res) => {
+    const { file } = req
+    console.log(file);
+    res.redirect('/signup')
 }
 
 const addToCart = async (req, res) => {
@@ -75,4 +83,6 @@ const renderProfile = async (req, res) => {
 }
 
 
-module.exports = { getHome, signed, logOut, register, addProducts, postProduct, addToCart, renderCart, newOrder, renderProfile }
+
+
+module.exports = { getHome, signed, logOut, register, addProducts, postProduct, addToCart, renderCart, newOrder, renderProfile, handleProfilePic }

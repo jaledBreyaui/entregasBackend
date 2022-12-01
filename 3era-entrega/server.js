@@ -1,20 +1,22 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
+const PORT = process.env.PORT
 
+//passport
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const { isValidPassword, createHash } = require('./middlewares/passport')
-
-
-const session = require('express-session')
-
+// db
 const { ContenedorMongo } = require('./dao/container')
 const mongo = new ContenedorMongo()
+
+//session
+const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true }
 
-require('dotenv').config()
-const PORT = process.env.PORT
+const sendMail = require('./middlewares/newuser.mailer')
 
 const routes = require('./routes/routes')
 
@@ -66,9 +68,10 @@ passport.use('login', new LocalStrategy(
 passport.use('signup', new LocalStrategy(
     { usernameField: 'email', passwordField: 'password', passReqToCallback: true },
     async (req, email, password, done) => {
-        const { nombre, apellido, fechanacimiento, telefono, direccion, foto } = req.body
-
+        const { nombre, apellido, fechanacimiento, telefono, direccion, archivo } = req.body
+        const foto = archivo + `-${Date.now()}`
         const nuevo = { nombre, apellido, email, password: createHash(password), fechanacimiento, telefono, direccion, foto }
+
         let users = await mongo.getUsers()
         let user = users.find(user => user.email === email)
         if (user) {

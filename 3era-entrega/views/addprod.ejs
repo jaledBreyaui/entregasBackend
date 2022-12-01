@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/add.css" type="text/css">
+    <link rel="stylesheet" href="../styles/home/add.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Document</title>
 </head>
@@ -18,7 +18,7 @@
             <input placeholder="Nombre" name="nombre">
             <input placeholder="Precio" name="precio">
             <input placeholder="Tags" name="tags">
-            <input type="file" name="archivo">
+            <input type="file" name="fotoProducto">
             <button type="submit" disabled id="submitproduct">Añadir</button>
         </form>
     </div>
@@ -31,7 +31,7 @@
     const precio = document.getElementsByName('precio')[0]
     const tags = document.getElementsByName('tags')[0]
     const marca = document.getElementsByName('marca')[0]
-    const img = document.getElementsByName('archivo')[0]
+    const img = document.getElementsByName('fotoProducto')[0]
     const button = document.getElementById('submitproduct')
 
     const toast = (text) => {

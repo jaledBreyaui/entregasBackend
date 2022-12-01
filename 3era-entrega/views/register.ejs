@@ -34,11 +34,11 @@
                 <input type="submit" class="rounded ingresar" value="Ingresar">
             </div>
         </form>
-        <form action="/signup" method="POST" class="signUp ">
+        <form action="/signup" method="POST" class="signUp" enctype="multipart/form-data">
             <h3>
                 Crea tu cuenta!
             </h3>
-            <div class="formWrapper">
+            <div class=" formWrapper">
                 <div class="signI">
                     <label>Nombre</label>
                     <input name="nombre" class="rounded">
@@ -57,7 +57,7 @@
                     <label>Telefono</label>
                     <input name="telefono" type="number" class="rounded">
                     <label>Foto</label>
-                    <input name="foto" class="rounded"></var>
+                    <input name="archivo" type="file" class="rounded"></var>
                 </div>
             </div>
             <input type="submit" value="Registrarse" class="registrarse rounded">
